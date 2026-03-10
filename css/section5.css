@@ -1,0 +1,157 @@
+/* Secao 5: Para quem é a Metrik */
+.target-audience {
+    background-color: #000000;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.target-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.target-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.target-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.target-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.target-card {
+    background: linear-gradient(135deg, #111111 0%, #050505 100%);
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    /* geometric clip */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+    cursor: crosshair;
+}
+
+/* Cursor Ripple Reveal setup */
+.target-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
+.target-card:hover::before {
+    opacity: 1;
+}
+
+.card-bg-number {
+    position: absolute;
+    bottom: -15px;
+    right: -10px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 8rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.target-card p {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    position: relative;
+    z-index: 2;
+    line-height: 1.6;
+}
+
+.target-card strong {
+    font-weight: 600;
+    color: var(--color-cyan);
+}
+
+/* Interactivity logic: Obfuscate siblings */
+.target-grid:hover .target-card:not(:hover) {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+.target-grid:hover .target-card:hover {
+    transform: scale(1.05);
+    border-color: var(--color-cyan);
+    z-index: 10;
+}
+
+.target-closing {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-cyan);
+    text-align: center;
+    margin-top: 60px;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .target-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .col-2 {
+        grid-column: span 2;
+    }
+
+    .target-card[style] {
+        margin-top: 24px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .target-audience {
+        padding: 60px 0;
+    }
+
+    .target-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .col-2 {
+        grid-column: span 1;
+        order: -1;
+        /* Title first */
+    }
+
+    .target-card[style] {
+        margin-top: 0 !important;
+    }
+
+    .card-bg-number {
+        display: none;
+        /* remove numerators on mobile */
+    }
+
+    .target-card p {
+        font-size: 1.125rem;
+    }
+}

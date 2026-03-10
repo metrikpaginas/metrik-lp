@@ -1,0 +1,188 @@
+/* Secao 3: Quem Somos */
+.about-section {
+    padding: 120px 0;
+    background-color: #050505;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.about-content {
+    width: 40%;
+    padding-right: 80px;
+    position: sticky;
+    top: 15vh;
+}
+
+.about-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+}
+
+.about-text {
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+}
+
+.about-methodology {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-methodology li {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.about-methodology li::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background-color: var(--color-cyan);
+    margin-right: 16px;
+}
+
+.about-carousel-wrapper {
+    width: 60%;
+    position: relative;
+    /* overflow visible for bleed effect */
+}
+
+/* Swiper Styles */
+.about-swiper {
+    width: 100%;
+    overflow: visible !important;
+    /* Bleed Right */
+}
+
+.swiper-slide {
+    width: 100%;
+    max-width: 460px;
+    /* Base card width */
+    height: auto;
+    aspect-ratio: 3 / 4;
+    cursor: grab;
+    transition: filter 0.3s ease;
+}
+
+.swiper-slide:active {
+    cursor: grabbing;
+}
+
+/* Grayscale for inactive slides */
+.swiper-slide:not(.swiper-slide-active) img {
+    filter: grayscale(100%);
+}
+
+.slide-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.slide-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.swiper-slide-active .slide-inner img {
+    /* Parallax effect attempt on active if needed, usually handled by JS/Swiper */
+    transform: scale(1.05);
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 32px 32px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 3;
+}
+
+.slide-content h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-cyan);
+    margin-bottom: 8px;
+    /* Parallax effect attempt handled by GSAP/Swiper in JS */
+}
+
+.slide-content p {
+    font-size: 0.875rem;
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+/* Responsive Quem Somos */
+@media (max-width: 1024px) {
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-content {
+        width: 100%;
+        padding-right: 0;
+        position: static;
+        margin-bottom: 60px;
+    }
+
+    .about-carousel-wrapper {
+        width: 100%;
+    }
+
+    .swiper-slide {
+        height: 350px;
+        aspect-ratio: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 80px 0;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+}

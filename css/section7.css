@@ -1,0 +1,209 @@
+/* Secao 7: Como Funciona */
+.timeline-section {
+    background-color: #000000;
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.timeline-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.timeline-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: #FFFFFF;
+}
+
+.timeline-wrapper-scroller {
+    width: 100%;
+    overflow-x: auto;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 80px 0 120px;
+    cursor: grab;
+}
+
+.timeline-wrapper-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.timeline-wrapper-scroller:active {
+    cursor: grabbing;
+}
+
+.timeline-track {
+    display: flex;
+    width: max-content;
+    position: relative;
+    padding: 0 50vw;
+    /* Allow scrolling to center the first and last items */
+    align-items: center;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #006666;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.timeline-line-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    /* Updated via JS scroll */
+    background-color: var(--color-cyan);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: width 0.1s;
+}
+
+.timeline-step {
+    position: relative;
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.step-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #000000;
+    border: 3px solid #00FFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.timeline-step:hover .step-dot,
+.timeline-step.active .step-dot {
+    background-color: var(--color-yellow);
+    border-color: var(--color-yellow);
+    box-shadow: 0 0 15px rgba(255, 222, 33, 0.6);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.step-content {
+    position: relative;
+}
+
+/* Odd above line, Even below line */
+.step-odd .step-content {
+    margin-bottom: 60px;
+    margin-top: -140px;
+}
+
+.step-even .step-content {
+    margin-top: 60px;
+}
+
+.step-number {
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 6rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    line-height: 1;
+}
+
+/* Position numbers behind text based on odd/even */
+.step-odd .step-number {
+    bottom: -20px;
+    left: -20px;
+}
+
+.step-even .step-number {
+    top: -40px;
+    left: -20px;
+}
+
+.step-content h4 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 1024px) {
+
+    /* Transform to vertical timeline for smaller screens */
+    .timeline-wrapper-scroller {
+        overflow-x: visible;
+        padding: 40px 24px;
+        cursor: default;
+    }
+
+    .timeline-track {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .timeline-line {
+        top: 0;
+        left: 20px;
+        /* Offset for vertical line */
+        width: 2px;
+        height: 100%;
+        transform: none;
+    }
+
+    .timeline-step {
+        width: 100%;
+        margin-bottom: 60px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .step-dot {
+        top: 20px;
+        left: 20px;
+        transform: translate(-50%, -50%);
+    }
+
+    .timeline-step:hover .step-dot,
+    .timeline-step.active .step-dot {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+
+    .step-odd .step-content,
+    .step-even .step-content {
+        margin: 0 0 0 60px;
+        text-align: left;
+    }
+
+    .step-content h4 {
+        text-align: left;
+        padding: 0;
+    }
+
+    .step-odd .step-number,
+    .step-even .step-number {
+        top: -30px;
+        left: -10px;
+    }
+}

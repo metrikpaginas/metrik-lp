@@ -1,0 +1,83 @@
+/* Secao 4: Nosso Diferencial */
+.differential-section {
+    background-color: #000000;
+    min-height: 150vh;
+    /* Height for scroll tracking */
+    position: relative;
+    padding: 0 24px;
+}
+
+.differential-container {
+    max-width: 900px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+
+.differential-sticky-wrapper {
+    position: sticky;
+    top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Height inside sticky to prevent collapse */
+    height: auto;
+}
+
+.differential-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 40px;
+}
+
+.differential-text {
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
+    /* space between words */
+}
+
+.differential-text span {
+    display: inline-block;
+    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    opacity: 0.2;
+}
+
+.differential-text span.active {
+    opacity: 1;
+    color: #FFFFFF;
+}
+
+.differential-text span.active.highlight-yellow {
+    color: var(--color-yellow);
+    text-shadow: 0 0 15px rgba(255, 222, 33, 0.4);
+}
+
+@media (max-width: 768px) {
+    .differential-section {
+        min-height: 200vh;
+        /* More scroll space for mobile */
+    }
+
+    .differential-sticky-wrapper {
+        top: 20vh;
+    }
+
+    .differential-title {
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+    }
+}
