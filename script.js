@@ -57,6 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
             once: true,
             offset: 50,
         });
+
+        // Recalculate offsets after all images/styles load to prevent hidden sections
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                AOS.refresh();
+            }, 500);
+        });
     }
 });
 
